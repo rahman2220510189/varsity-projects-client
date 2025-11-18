@@ -20,6 +20,9 @@ const NavBar = () => {
       <NavLink to="/adminPanel" className="font-medium text-white hover:text-yellow-400">
         Update & Delete Equipment
       </NavLink>
+      <NavLink to="/due-equipment" className="font-medium text-white hover:text-yellow-400">
+        Due Equipment
+      </NavLink>
     </>
   );
 

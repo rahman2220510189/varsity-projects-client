@@ -6,6 +6,7 @@ import CollectForm from '../Pages/Home/UploadEquipment/CollectForm';
 import ReturnEquipment from '../Pages/Home/UploadEquipment/ReturnEquipment';
 import History from '../Pages/History/History';
 import AdminPanel from '../AdminPanel/AdminPanel';
+import DueEquipmentPanel from '../AdminPanel/DueEquipmentPanel';
 export const router = createBrowserRouter([
     {
         path:'/',
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
             {
                 path: '/adminPanel',
                 element: <AdminPanel></AdminPanel>,
+            },
+            {
+                path: '/due-equipment',
+                element:<DueEquipmentPanel></DueEquipmentPanel>,
             },
         ]
 

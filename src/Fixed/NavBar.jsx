@@ -42,6 +42,12 @@ const NavBar = () => {
       >
         Due Equipment
       </NavLink>
+      <NavLink
+        to="/my-history"
+        className="font-medium text-white hover:text-yellow-400"
+      >
+        My History
+      </NavLink>
     </>
   );
 
@@ -82,7 +88,7 @@ hover:bg-red-700 hover:shadow-2xl transition duration-300 transform hover:scale-
                   </button>
                 ) : (
                   <Link
-                    to="login"
+                    to="login" state={{from: location}}replace
                     className="w-full font-extrabold text-center px-5 py-2 rounded-lg shadow-xl text-white block 
                            bg-gradient-to-r from-blue-600 to-indigo-600 
                            hover:from-blue-700 hover:to-indigo-700 
@@ -127,7 +133,7 @@ hover:bg-red-700 hover:shadow-2xl transition duration-300 transform hover:scale-
               Log Out
             </button>
           ) : (
-            <Link
+            <Link state={{from: location}}replace
               to="login"
               className="font-extrabold px-5 py-2 rounded-lg shadow-xl text-white 
                            bg-gradient-to-r from-blue-600 to-indigo-600 

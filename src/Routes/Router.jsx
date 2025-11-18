@@ -9,6 +9,7 @@ import AdminPanel from '../AdminPanel/AdminPanel';
 import DueEquipmentPanel from '../AdminPanel/DueEquipmentPanel';
 import LogInnForm from '../LogingInfromation/SignUp/LogInnForm';
 import SignIn from '../LogingInfromation/SignIn';
+import MyHistory from '../Pages/History/MyHistory/MyHistory';
 export const router = createBrowserRouter([
     {
         path:'/',
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
                 path: '/signup',
                 element: <SignIn></SignIn>,
             },
+            {
+                path:'/my-history',
+                element:<MyHistory></MyHistory>,
+            }
         ]
 
     }

@@ -1,7 +1,17 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 import img from "../assets/img1.jpeg";
+import { useContext } from "react";
+import { AuthContext } from "../firebase/Provider/AuthProviders";
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const location = useLocation();
+
+  const handleLogout = () => {
+    logOut().then(() => {
+      console.log("logged out");
+    });
+  };
   const links = (
     <>
       <NavLink to="/" className="font-medium text-white hover:text-yellow-400">
@@ -13,14 +23,23 @@ const NavBar = () => {
       >
         Add Equipment{" "}
       </NavLink>
-      <NavLink to="/history" className="font-medium text-white hover:text-yellow-400">
+      <NavLink
+        to="/history"
+        className="font-medium text-white hover:text-yellow-400"
+      >
         History
       </NavLink>
-    
-      <NavLink to="/adminPanel" className="font-medium text-white hover:text-yellow-400">
+
+      <NavLink
+        to="/adminPanel"
+        className="font-medium text-white hover:text-yellow-400"
+      >
         Update & Delete Equipment
       </NavLink>
-      <NavLink to="/due-equipment" className="font-medium text-white hover:text-yellow-400">
+      <NavLink
+        to="/due-equipment"
+        className="font-medium text-white hover:text-yellow-400"
+      >
         Due Equipment
       </NavLink>
     </>
@@ -52,9 +71,27 @@ const NavBar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-3 shadow bg-[#031528] rounded-box w-52 space-y-2"
             >
               {links}
-              {/* <li>
-                <Link to="/signin" className="hover:text-yellow-400 font-medium">Sign In</Link>
-              </li> */}
+              <li>
+                {user ? (
+                  <button
+                    onClick={handleLogout}
+                    className="bg-gradient-to-r from-blue-600 to-indigo-600 font-extrabold text-white px-5 py-2 rounded-lg shadow-xl 
+hover:bg-red-700 hover:shadow-2xl transition duration-300 transform hover:scale-105"
+                  >
+                    Log Out
+                  </button>
+                ) : (
+                  <Link
+                    to="login"
+                    className="w-full font-extrabold text-center px-5 py-2 rounded-lg shadow-xl text-white block 
+                           bg-gradient-to-r from-blue-600 to-indigo-600 
+                           hover:from-blue-700 hover:to-indigo-700 
+                           transition duration-300"
+                  >
+                    Sign In
+                  </Link>
+                )}
+              </li>
             </ul>
           </div>
           <Link
@@ -81,12 +118,25 @@ const NavBar = () => {
         </div>
 
         <div className="navbar-end hidden lg:flex pr-4">
-          <Link
-            to="/signin"
-            className="px-4 py-2 border border-yellow-400 rounded-full text-yellow-400 hover:bg-yellow-400 hover:text-black transition"
-          >
-            Sign In
-          </Link>
+          {user ? (
+            <button
+              onClick={handleLogout}
+              className="bg-gradient-to-r from-blue-600 to-indigo-600 font-extrabold text-white px-5 py-2 rounded-lg shadow-xl 
+hover:bg-red-700 hover:shadow-2xl transition duration-300 transform hover:scale-105"
+            >
+              Log Out
+            </button>
+          ) : (
+            <Link
+              to="login"
+              className="font-extrabold px-5 py-2 rounded-lg shadow-xl text-white 
+                           bg-gradient-to-r from-blue-600 to-indigo-600 
+                           hover:from-blue-700 hover:to-indigo-700 
+                           transition duration-300 transform hover:scale-105"
+            >
+              Sign In
+            </Link>
+          )}
         </div>
       </div>
     </div>

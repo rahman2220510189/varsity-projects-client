@@ -7,6 +7,8 @@ import ReturnEquipment from '../Pages/Home/UploadEquipment/ReturnEquipment';
 import History from '../Pages/History/History';
 import AdminPanel from '../AdminPanel/AdminPanel';
 import DueEquipmentPanel from '../AdminPanel/DueEquipmentPanel';
+import LogInnForm from '../LogingInfromation/SignUp/LogInnForm';
+import SignIn from '../LogingInfromation/SignIn';
 export const router = createBrowserRouter([
     {
         path:'/',
@@ -39,6 +41,14 @@ export const router = createBrowserRouter([
             {
                 path: '/due-equipment',
                 element:<DueEquipmentPanel></DueEquipmentPanel>,
+            },
+            {
+                path:'/login',
+                element:<LogInnForm></LogInnForm>
+            },
+            {
+                path: '/signup',
+                element: <SignIn></SignIn>,
             },
         ]
 

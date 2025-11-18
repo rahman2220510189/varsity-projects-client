@@ -3,53 +3,55 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import img from "../assets/img1.jpeg";
 import { useContext } from "react";
 import { AuthContext } from "../firebase/Provider/AuthProviders";
+import useAdminCheck from "../Hooks/useAdminCheck";
+import { FaUserShield } from "react-icons/fa";
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
   const location = useLocation();
+
+  const[isAdmin, isAdminLoading] = useAdminCheck();
+
 
   const handleLogout = () => {
     logOut().then(() => {
       console.log("logged out");
     });
   };
-  const links = (
+  const commonLinks =(
     <>
-      <NavLink to="/" className="font-medium text-white hover:text-yellow-400">
-        Home
-      </NavLink>
-      <NavLink
-        to="/upload-equipment"
-        className="font-medium text-white hover:text-yellow-400"
-      >
-        Add Equipment{" "}
-      </NavLink>
-      <NavLink
-        to="/history"
-        className="font-medium text-white hover:text-yellow-400"
-      >
-        History
-      </NavLink>
-
-      <NavLink
-        to="/adminPanel"
-        className="font-medium text-white hover:text-yellow-400"
-      >
-        Update & Delete Equipment
-      </NavLink>
-      <NavLink
-        to="/due-equipment"
-        className="font-medium text-white hover:text-yellow-400"
-      >
-        Due Equipment
-      </NavLink>
-      <NavLink
-        to="/my-history"
-        className="font-medium text-white hover:text-yellow-400"
-      >
-        My History
-      </NavLink>
+    <NavLink to="/" className="font-medium text-white hover:text-yellow-400">
+                Home
+            </NavLink>
+            <NavLink to="/history" className="font-medium text-white hover:text-yellow-400">
+                Activities
+            </NavLink>
+            <NavLink to="/my-history" className="font-medium text-white hover:text-yellow-400">
+                My History
+            </NavLink>
     </>
   );
+  const adminAccessLink = user && isAdmin ? (
+    <NavLink 
+    to="/admin-dashboard-access" 
+    className="font-medium px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-700 transition duration-300"
+    >
+        <FaUserShield className="inline mr-1"/> Admin Panel
+    </NavLink>
+  ):null
+
+
+  
+  
+
+  
+
+  const finalLinks = (
+    <>
+    {commonLinks}
+    {adminAccessLink}
+    </>
+  );
+ 
 
   return (
     <div className="w-full bg-gradient-to-r from-indigo-700 via-purple-800 to-black fixed top-0 z-50 shadow-md px-4 sm:px-6 lg:px-8">
@@ -76,14 +78,14 @@ const NavBar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-3 shadow bg-[#031528] rounded-box w-52 space-y-2"
             >
-              {links}
+              {finalLinks}
               <li>
                 {user ? (
                   <button
                     onClick={handleLogout}
                     className="bg-gradient-to-r from-blue-600 to-indigo-600 font-extrabold text-white px-5 py-2 rounded-lg shadow-xl 
-hover:bg-red-700 hover:shadow-2xl transition duration-300 transform hover:scale-105"
-                  >
+                             hover:bg-red-700 hover:shadow-2xl transition duration-300 transform hover:scale-105">
+                  
                     Log Out
                   </button>
                 ) : (
@@ -120,7 +122,7 @@ hover:bg-red-700 hover:shadow-2xl transition duration-300 transform hover:scale-
         </div>
 
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 space-x-4">{links}</ul>
+          <ul className="menu menu-horizontal px-1 space-x-4">{finalLinks}</ul>
         </div>
 
         <div className="navbar-end hidden lg:flex pr-4">

@@ -10,52 +10,70 @@ import DueEquipmentPanel from '../AdminPanel/DueEquipmentPanel';
 import LogInnForm from '../LogingInfromation/SignUp/LogInnForm';
 import SignIn from '../LogingInfromation/SignIn';
 import MyHistory from '../Pages/History/MyHistory/MyHistory';
+import ManageUsers from '../AdminPanel/ManageUsers';
+import AdminLayout from '../AdminPanel/AdminLayout';
+import PrivateRoute from './PrivateRoute';
+
+
 export const router = createBrowserRouter([
     {
-        path:'/',
-        element:<Main></Main>,
-        children:[
-            {
-                path: '/',
-                element:<Home></Home>,
-            },
-            {
-                path: '/upload-equipment',
-                element: <UploadEquipment></UploadEquipment>,
-            },
-            {
+        path: '/',
+        element: <Main></Main>,
+        children: [
+            { path: '/', element:<Home></Home> },
+            { path: '/history', element: <History></History> },
+            { path: '/my-history', element:<MyHistory></MyHistory> },
+           
+               {
                 path: "/equipment/:id/collect",
-                element: <CollectForm></CollectForm>,
+                element:<PrivateRoute> <CollectForm></CollectForm> </PrivateRoute>,
             },
             {
                 path: '/equipment/:id/return',
-                element: <ReturnEquipment></ReturnEquipment>,
+                element: <PrivateRoute><ReturnEquipment></ReturnEquipment></PrivateRoute>,
             },
-            {
-                path: '/history',
-                element: <History></History>,
-            },
-            {
-                path: '/adminPanel',
-                element: <AdminPanel></AdminPanel>,
-            },
-            {
-                path: '/due-equipment',
-                element:<DueEquipmentPanel></DueEquipmentPanel>,
-            },
-            {
-                path:'/login',
-                element:<LogInnForm></LogInnForm>
-            },
-            {
-                path: '/signup',
-                element: <SignIn></SignIn>,
-            },
-            {
-                path:'/my-history',
-                element:<MyHistory></MyHistory>,
-            }
+            { path:'/login', element:<LogInnForm></LogInnForm> },
+            { path: '/signup', element: <SignIn></SignIn> },
+            
+          
         ]
-
+    },
+    
+  {
+        path: '/admin-dashboard-access', 
+        
+        
+        element: <AdminLayout />, 
+        
+        children: [
+   
+            { 
+                index: true, 
+                element: <AdminPanel /> 
+            }, 
+            
+            { 
+                path: 'managed-users', 
+                element: <ManageUsers /> 
+            },
+           
+            { 
+                path: 'manage-items',
+                element: <AdminPanel /> 
+            },
+ 
+            { 
+                path: 'due-list',
+                element: <DueEquipmentPanel /> 
+            },
+        
+            { 
+                path: 'add-equipment', 
+                element: <UploadEquipment /> 
+            },
+            
+            
+            
+        ]
     }
-])
+]);

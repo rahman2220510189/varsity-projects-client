@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../firebase/Provider/AuthProviders"; 
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'; // Added icons
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'; 
+import useAxiosSecure from "../Hooks/useAxiosSecure";
+import { AuthContext } from "../firebase/Provider/AuthProviders";
 
 const SignIn = () => { 
     const [showPassword, setShowPassword] = useState(false);
@@ -9,6 +10,7 @@ const SignIn = () => {
     const navigate = useNavigate();
     
     const { createUser, googleSignIn } = useContext(AuthContext); 
+    const axiosSecure = useAxiosSecure(); // 2. Initialized the hook
 
     const isStrongPassword = (pass) => {
         return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(pass);
@@ -20,16 +22,36 @@ const SignIn = () => {
         const formPassword = e.target.password.value;
         console.log(email, formPassword);
 
+        // Firebase Create User
         createUser(email, formPassword)
             .then((result) => {
                 const user = result.user;
-                console.log(user);
+                console.log("Firebase User:", user);
                 
-                if (isStrongPassword(formPassword)) {
-                    navigate("/"); 
-                } else {
-                    alert("Weak Password: Password must be 8+ characters, contain upper/lowercase & a number");
-                }
+                // --- 3. MongoDB Backend Sync Logic ---
+                // displayName is often null during createUser, so we use email part as name
+                const userInfo = { 
+                    email: user.email, 
+                    name: user.displayName || email.split('@')[0] 
+                };
+                
+                axiosSecure.post('/api/users', userInfo)
+                    .then(res => {
+                        console.log('User saved to DB', res.data);
+                        
+                        // 4. Navigate only after successful DB save
+                        if (isStrongPassword(formPassword)) {
+                            navigate("/"); 
+                        } else {
+                            alert("Weak Password: Password must be 8+ characters, contain upper/lowercase & a number");
+                        }
+                    })
+                    .catch(dbError => {
+                        // Handle database saving error
+                        console.error("DB Save Error:", dbError);
+                        alert("Signup successful, but failed to save user info to backend.");
+                    });
+                // --- End MongoDB Logic ---
             })
             .catch(error => {
                 console.error("Signup Error:", error);
@@ -42,6 +64,17 @@ const SignIn = () => {
             .then((result) => {
                 const loggedUser = result.user;
                 console.log("Google user:", loggedUser);
+                
+                // Optional: Sync Google user to DB
+                const userInfo = { 
+                    email: loggedUser.email, 
+                    name: loggedUser.displayName || loggedUser.email.split('@')[0]
+                };
+                
+                axiosSecure.post('/api/users', userInfo)
+                    .then(res => console.log('Google user saved to DB', res.data))
+                    .catch(dbError => console.error("DB Save Error:", dbError));
+
                 navigate("/"); 
             })
             .catch(error => {
@@ -110,8 +143,8 @@ const SignIn = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             className={`w-full pr-12 py-3 border ${
                                 isStrongPassword(password)
-                                    ? "border-green-500"
-                                    : "border-red-400"
+                                    ? "border-gray-100"
+                                    : "border-gray-200"
                             } rounded-xl focus:outline-none text-gray-700`}
                             placeholder="enter your password"
                         />

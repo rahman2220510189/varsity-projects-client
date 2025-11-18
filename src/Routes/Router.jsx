@@ -4,6 +4,7 @@ import Home from '../Pages/Home/Home';
 import UploadEquipment from '../Pages/Home/UploadEquipment/UploadEquipment';
 import CollectForm from '../Pages/Home/UploadEquipment/CollectForm';
 import ReturnEquipment from '../Pages/Home/UploadEquipment/ReturnEquipment';
+import History from '../Pages/History/History';
 export const router = createBrowserRouter([
     {
         path:'/',
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
             {
                 path: '/equipment/:id/return',
                 element: <ReturnEquipment></ReturnEquipment>,
+            },
+            {
+                path: '/history',
+                element: <History></History>,
             }
         ]
 

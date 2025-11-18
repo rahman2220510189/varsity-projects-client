@@ -178,10 +178,17 @@ const Home = () => {
                   <h3 className="text-2xl font-bold text-white mb-2 leading-tight">
                     {item.name}
                   </h3>
-                  <p className="text-base text-yellow-300 font-medium">
-                    <span>Available:</span> {item.quantity} units
-                  </p>
-                
+                  <div className="flex items-center space-x-4">
+                    <span className="text-sm font-semibold text-yellow-400 uppercase tracking-wide">
+                      Available:
+                    </span>
+                    <div className="mt-1">
+                      <span className="inline-block bg-gradient-to-r from-pink-500 to-yellow-500 text-white px-6 py-2 rounded-full font-bold text-xl">
+                        {item.quantity}
+                      </span>
+                    </div>
+                  </div>
+
                   <p className="text-sm text-white/70 mt-1 italic">
                     {/* Determine the content to display */}
                     {item.purpose.length > 70 && expandedPurposeId !== item._id

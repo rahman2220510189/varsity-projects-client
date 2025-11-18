@@ -11,7 +11,7 @@ const onSubmit = async (data) => {
       formData.append('name', data.name);
       formData.append('quantity', data.quantity);
       formData.append('description', data.description);
-      formData.append('purpose', data.purpose);   // <-- add purpose
+      formData.append('purpose', data.purpose);   
       formData.append('website', data.website)
       
 

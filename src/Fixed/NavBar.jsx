@@ -4,20 +4,23 @@ import img from "../assets/img1.jpeg";
 const NavBar = () => {
   const links = (
     <>
-      <NavLink to="/" className="font-medium hover:text-yellow-400">
+      <NavLink to="/" className="font-medium text-white hover:text-yellow-400">
         Home
       </NavLink>
       <NavLink
         to="/upload-equipment"
-        className="font-medium hover:text-yellow-400"
+        className="font-medium text-white hover:text-yellow-400"
       >
         Add Equipment{" "}
+      </NavLink>
+      <NavLink to="/history" className="font-medium text-white hover:text-yellow-400">
+        History
       </NavLink>
     </>
   );
 
   return (
-    <div className="w-full bg-[#001f3f] text-white fixed top-0 z-50 shadow-md px-4 sm:px-6 lg:px-8">
+    <div className="w-full bg-gradient-to-r from-indigo-700 via-purple-800 to-black fixed top-0 z-50 shadow-md px-4 sm:px-6 lg:px-8">
       <div className="navbar max-w-[1280px] mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -39,7 +42,7 @@ const NavBar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-3 shadow bg-[#001f3f] rounded-box w-52 space-y-2"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-3 shadow bg-[#031528] rounded-box w-52 space-y-2"
             >
               {links}
               {/* <li>
@@ -56,7 +59,7 @@ const NavBar = () => {
             </div>
 
             <div>
-              <h1 className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-blue-200 bg-clip-text text-transparent">
+              <h1 className="text-lg font-semibold bg-gradient-to-r from-white to-blue-300 bg-clip-text text-transparent">
                 DIU EMBEDDED LAB
               </h1>
               <p className="text-xs bg-gradient-to-r from-blue-400 to-blue-200 bg-clip-text text-transparent -mt-1">

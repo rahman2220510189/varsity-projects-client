@@ -29,11 +29,10 @@ const AdminLayout = () => {
         {isSidebarOpen && (
           <div
             className="fixed inset-0 bg-black opacity-50 z-30 md:hidden"
-            onClick={() => setIsSidebarOpen(false)}
+            onClick={() => SetIsSidebarOpen(false)}
           ></div>
         )}
         <Outlet />{" "}
-        {/* Renders the specific dashboard, users, or items content */}
       </main>
     </div>
   );

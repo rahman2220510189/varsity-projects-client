@@ -13,6 +13,7 @@ import MyHistory from '../Pages/History/MyHistory/MyHistory';
 import ManageUsers from '../AdminPanel/ManageUsers';
 import AdminLayout from '../AdminPanel/AdminLayout';
 import PrivateRoute from './PrivateRoute';
+import AdminHistory from '../AdminPanel/AdminHistory';
 
 
 export const router = createBrowserRouter([
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
                 path: 'add-equipment', 
                 element: <UploadEquipment /> 
             },
+            {
+                path: 'all-history',
+                element: <AdminHistory />
+            }
             
             
             

@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaUserShield, FaPlusCircle, FaTrashAlt, FaClipboardList, FaHome, FaTimes } from 'react-icons/fa';
+import { BsClockHistory } from 'react-icons/bs';
 
 const adminLinks = (
     <>
@@ -46,6 +47,14 @@ const adminLinks = (
             }
         >
             <FaUserShield className="mr-3" /> Manage Users
+        </NavLink>
+        <NavLink 
+            to= "all-history" 
+            className={({ isActive }) => 
+                `flex items-center p-3 rounded-lg transition duration-200 ${isActive ? 'bg-indigo-600 text-white shadow-md' : 'text-gray-200 hover:bg-gray-700'}`
+            }
+        >
+            <BsClockHistory className="mr-3" /> All History
         </NavLink>
         
         <h3 className="text-sm font-semibold text-gray-400 uppercase mb-2 mt-4 border-t pt-4 border-gray-600">

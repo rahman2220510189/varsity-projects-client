@@ -188,6 +188,7 @@ const History = () => {
                                             <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-xs sm:text-sm">
                                                 <div className="font-semibold text-gray-800">{record.userName}</div>
                                                 <div className="text-gray-600 text-xs">{record.userEmail}</div>
+                                                <div className="text-gray-600 text-xs">{record.Id}</div>
                                                 <div className="text-gray-500 text-xs">
                                                     {record.role === 'student' ? '🎓 Student' : '👨‍🏫 Teacher'}
                                                     {record.department && ` • ${record.department}`}

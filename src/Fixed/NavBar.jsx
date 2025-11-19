@@ -16,6 +16,10 @@ const NavBar = () => {
       <NavLink to="/history" className="font-medium text-white hover:text-yellow-400">
         History
       </NavLink>
+    
+      <NavLink to="/adminPanel" className="font-medium text-white hover:text-yellow-400">
+        Update & Delete Equipment
+      </NavLink>
     </>
   );
 

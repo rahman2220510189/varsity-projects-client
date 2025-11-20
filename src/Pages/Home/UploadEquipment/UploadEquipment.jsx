@@ -4,6 +4,7 @@ import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 const UploadEquipment = () => {
 const { register, handleSubmit, reset } = useForm();
 const axiosPublic = useAxiosPublic();  
+const   GOOGLE_API_KEY = "https://script.google.com/macros/s/AKfycbz16FzJyOiy62I1CErXWVnnKf0wqjwsiBMjupVcK6kss_kMY4Aoyqjw_kpMHUaiFy4/exec";
 const onSubmit = async (data) => {
     try {
       const formData = new FormData();
@@ -18,6 +19,19 @@ const onSubmit = async (data) => {
       const res = await axiosPublic.post('/api/equipment', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
+
+          const sheetsData ={
+            name: data.name,
+            quantity: data.quantity,
+          }
+          await fetch(GOOGLE_API_KEY, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(sheetsData),
+          })
 
       alert(res.data.message || 'Equipment uploaded successfully');
       reset();

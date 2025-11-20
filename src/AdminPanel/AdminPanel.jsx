@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, act } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 import EditModal from './EditModel';
@@ -11,7 +11,7 @@ const AdminPanel = () => {
     const [pageLoading, setPageLoading] = useState(true);
     // New state to track which item's description/purpose is expanded
     const [expandedItemIds, setExpandedItemIds] = useState({}); 
-    
+    const GOOGLE_API_KEY ="https://script.google.com/macros/s/AKfycbz16FzJyOiy62I1CErXWVnnKf0wqjwsiBMjupVcK6kss_kMY4Aoyqjw_kpMHUaiFy4/exec";
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
 
@@ -41,6 +41,20 @@ const AdminPanel = () => {
         if (window.confirm(`Are you sure you want to permanently delete "${itemName}"? This action cannot be undone.`)) {
             try {
                 await axiosPublic.delete(`/api/equipment/${id}`);
+
+                const sheetsData = {
+                    action: 'delete',
+                    name: itemName,
+                }
+
+                await fetch(GOOGLE_API_KEY, {
+                    method: 'POST',
+                    mode: 'no-cors',    
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(sheetsData),
+                });
                 alert('Item deleted successfully!');
                 loadItems();
             } catch (error) {

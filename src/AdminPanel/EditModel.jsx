@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { act, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
@@ -59,6 +59,7 @@ const EditModal = ({ item, onClose, onSuccess }) => {
           }
         }
       );
+   
 
       alert('Item updated successfully!');
       onSuccess();

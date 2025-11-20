@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { Search, ChevronLeft, ChevronRight, Loader } from "lucide-react";
+import DownloadSheetButton from "../../Download/DownloadSheetButton";
 
 const Home = () => {
   const [items, setItems] = useState([]);
@@ -105,6 +106,9 @@ const Home = () => {
       <h1 className="text-4xl font-extrabold text-gray-900 mt-20 mb-8 text-center border-b-2 pb-2">
         🛠️ Equipment Inventory
       </h1>
+      <div className="flex justify-center items-center mb-8">
+        <DownloadSheetButton />
+      </div>
 
       {/* Search Bar with Suggestions */}
       <div className="relative mb-10 w-full max-w-2xl mx-auto">

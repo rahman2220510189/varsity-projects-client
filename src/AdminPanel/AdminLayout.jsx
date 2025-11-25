@@ -21,7 +21,7 @@ const AdminLayout = () => {
     <div className="flex min-h-screen bg-gray-100">
       <AdminSidebar isOpen={isSidebarOpen} setIsOpen={SetIsSidebarOpen} />
 
-      <main className="flex-1 p-4 md:p-10">
+      <main className="flex-1  ">
         <button
           onClick={() => SetIsSidebarOpen(!isSidebarOpen)}
           className="md:hidden fixed top-4 left-4 z-40 p-3 rounded-lg bg-indigo-600 text-white shadow-md hover:bg-indigo-700"

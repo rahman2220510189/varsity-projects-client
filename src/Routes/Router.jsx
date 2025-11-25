@@ -14,6 +14,8 @@ import ManageUsers from '../AdminPanel/ManageUsers';
 import AdminLayout from '../AdminPanel/AdminLayout';
 import PrivateRoute from './PrivateRoute';
 import AdminHistory from '../AdminPanel/AdminHistory';
+import AdminActivityHistory from '../AdminPanel/AdminActivityHistory';
+import ForgotPassword from '../LogingInfromation/ForgotPassword';
 
 
 export const router = createBrowserRouter([
@@ -35,6 +37,10 @@ export const router = createBrowserRouter([
             },
             { path:'/login', element:<LogInnForm></LogInnForm> },
             { path: '/signup', element: <SignIn></SignIn> },
+            {
+                path: '/forgot-password',
+                element: <ForgotPassword></ForgotPassword>,
+            },
             
           
         ]
@@ -75,6 +81,10 @@ export const router = createBrowserRouter([
             {
                 path: 'all-history',
                 element: <AdminHistory />
+            },
+            {
+                path: 'admin-activity-history',
+                element: <AdminActivityHistory />
             }
             
             

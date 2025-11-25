@@ -388,7 +388,7 @@ const CollectForm = () => {
                             {/* Image */}
                             <div className="md:col-span-1 bg-white rounded-xl shadow-md p-4 flex justify-center items-center h-64">
                                 <img 
-                                    src={`http://localhost:5000/uploads/${item.image}`} 
+                                    src={`https://my-varsity-projects-server.onrender.com/uploads/${item.image}`} 
                                     alt={item.name} 
                                     className="max-h-full max-w-full object-contain rounded-lg"
                                 />
@@ -511,7 +511,7 @@ const CollectForm = () => {
                                 </>
                             )}
                             
-                            {/* ✅ Submit Button with Gradient */}
+                            {/* Submit Button with Gradient */}
                             <button
                                 type="submit"
                                 className={`w-full py-3 px-4 font-extrabold rounded-lg text-white shadow-xl transition duration-300 transform hover:scale-[1.01] ${

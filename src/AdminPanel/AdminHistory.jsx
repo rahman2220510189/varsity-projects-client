@@ -74,7 +74,7 @@ const AdminHistory = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-cyan-800 to-indigo-900 py-8 px-4 sm:py-12">
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-cyan-800 to-indigo-900 py-10 px-10 sm:py-12">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
@@ -168,7 +168,7 @@ const AdminHistory = () => {
                         <div className="flex items-center gap-4">
                           {record.itemImage && (
                             <img
-                              src={`http://localhost:5000/uploads/${record.itemImage}`}
+                              src={`https://my-varsity-projects-server.onrender.com/uploads/${record.itemImage}`}
                               alt={record.itemName}
                               className="w-14 h-14 rounded-lg object-cover"
                             />
@@ -235,7 +235,7 @@ const AdminHistory = () => {
                 <div className="flex gap-4 mb-4">
                   {record.itemImage && (
                     <img
-                      src={`http://localhost:5000/uploads/${record.itemImage}`}
+                      src={`https://my-varsity-projects-server.onrender.com/uploads/${record.itemImage}`}
                       alt={record.itemName}
                       className="w-20 h-20 rounded-xl object-cover flex-shrink-0"
                     />

@@ -147,7 +147,7 @@ const Home = () => {
                 className="flex items-center p-3 cursor-pointer hover:bg-indigo-50 transition duration-150 border-b border-gray-100 last:border-b-0"
               >
                 <img
-                  src={`http://localhost:5000/uploads/${item.image}`}
+                  src={`https://my-varsity-projects-server.onrender.com/uploads/${item.image}`}
                   alt={item.name}
                   className="w-20 h-20 object-cover rounded-full mr-3 border border-gray-200"
                 />
@@ -174,7 +174,7 @@ const Home = () => {
                 <div className="flex-shrink-0 mb-4">
                   <div className="w-full h-40 flex justify-center items-center bg-white/30 backdrop-blur-sm rounded-lg p-2 mb-4">
                     <img
-                      src={`http://localhost:5000/uploads/${item.image}`}
+                      src={`https://my-varsity-projects-server.onrender.com/uploads/${item.image}`}
                       alt={item.name}
                       className="max-h-full max-w-full object-contain rounded-lg"
                     />

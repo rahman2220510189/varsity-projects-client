@@ -105,7 +105,8 @@ const History = () => {
                             <div className="text-xs sm:text-sm font-semibold opacity-90 mb-1">Total Records</div>
                             <div className="text-2xl sm:text-4xl font-bold">{stats.totalRecords}</div>
                         </div>
-                        <div className="bg-gradient-to-br from-green-500 to-emerald-600 text-white rounded-2xl p-4 md:p-6 shadow-lg">
+                        
+                         <div className="bg-gradient-to-br from-green-500 to-emerald-600 text-white rounded-2xl p-4 md:p-6 shadow-lg">
                             <div className="text-xs sm:text-sm font-semibold opacity-90 mb-1">Currently Collected</div>
                             <div className="text-2xl sm:text-4xl font-bold">{stats.totalCollected}</div>
                         </div>
@@ -113,6 +114,7 @@ const History = () => {
                             <div className="text-xs sm:text-sm font-semibold opacity-90 mb-1">Total Returned</div>
                             <div className="text-2xl sm:text-4xl font-bold">{stats.totalReturned}</div>
                         </div>
+
                         <div className="bg-gradient-to-br from-pink-500 to-red-500 text-white rounded-2xl p-4 md:p-6 shadow-lg">
                             <div className="text-xs sm:text-sm font-semibold opacity-90 mb-1">Active Loans</div>
                             <div className="text-2xl sm:text-4xl font-bold">{stats.activeLoans}</div>

@@ -112,7 +112,7 @@ const ReturnEquipment = () => {
                     {/* Image */}
                     <div className="h-96 rounded-2xl overflow-hidden mb-6 bg-white/20 flex items-center justify-center">
                         <img
-                            src={`http://localhost:5000/uploads/${item.image}`}
+                            src={`https://my-varsity-projects-server.onrender.com/uploads/${item.image}`}
                             alt={item.name}
                             className="max-h-full max-w-full object-contain p-4"
                         />

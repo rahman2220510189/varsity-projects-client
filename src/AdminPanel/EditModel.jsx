@@ -1,11 +1,13 @@
-import React, { act, useState } from 'react';
+import React, { act, useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { AuthContext } from '../firebase/Provider/AuthProviders';
 
 const EditModal = ({ item, onClose, onSuccess }) => {
   const [imagePreview, setImagePreview] = useState(
-    `http://localhost:5000/uploads/${item.image}`
+    `https://my-varsity-projects-server.onrender.com/uploads/${item.image}`
   );
+  const {user} = useContext(AuthContext);
   const [newImageFile, setNewImageFile] = useState(null);
   const [submitting, setSubmitting] = useState(false);
 
@@ -45,13 +47,14 @@ const EditModal = ({ item, onClose, onSuccess }) => {
       formData.append('quantity', data.quantity);
       formData.append('purpose', data.purpose);
       formData.append('website', data.website);
+      formData.append('userEmail', user.email);
 
       if (newImageFile) {
         formData.append('image', newImageFile);
       }
 
       const response = await axios.put(
-        `http://localhost:5000/api/equipment/${item._id}`,
+        `https://my-varsity-projects-server.onrender.com/api/equipment/${item._id}`,
         formData,
         {
           headers: {

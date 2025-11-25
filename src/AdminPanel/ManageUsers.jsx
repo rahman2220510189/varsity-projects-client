@@ -75,7 +75,7 @@ const ManageUsers = () => {
     if (isLoading) return <p className="text-center py-10">Loading Users...</p>;
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-8 py-12 px-10">
             <h1 className="text-4xl font-bold text-gray-800 flex items-center">
                 <FaUsers className="mr-3 text-indigo-600" /> Manage All Users ({users.length})
             </h1>

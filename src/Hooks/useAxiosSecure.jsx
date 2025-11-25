@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../firebase/Provider/AuthProviders";
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000/'
+    baseURL: 'https://my-varsity-projects-server.onrender.com'
 });
 
 const useAxiosSecure = () => {

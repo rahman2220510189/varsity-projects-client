@@ -1,7 +1,10 @@
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import { AuthContext } from "../../../firebase/Provider/AuthProviders";
+import { useContext } from "react";
 
 const UploadEquipment = () => {
+const {user} = useContext(AuthContext);  
 const { register, handleSubmit, reset } = useForm();
 const axiosPublic = useAxiosPublic();  
 const   GOOGLE_API_KEY = "https://script.google.com/macros/s/AKfycbz16FzJyOiy62I1CErXWVnnKf0wqjwsiBMjupVcK6kss_kMY4Aoyqjw_kpMHUaiFy4/exec";
@@ -13,7 +16,9 @@ const onSubmit = async (data) => {
       formData.append('quantity', data.quantity);
       formData.append('description', data.description);
       formData.append('purpose', data.purpose);   
-      formData.append('website', data.website)
+      formData.append('website', data.website);
+      formData.append('userEmail', user.email);
+
       
 
       const res = await axiosPublic.post('/api/equipment', formData, {

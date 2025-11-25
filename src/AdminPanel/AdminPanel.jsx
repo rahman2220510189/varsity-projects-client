@@ -1,15 +1,16 @@
-import React, { useState, useEffect, act } from 'react';
+import React, { useState, useEffect, act, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 import EditModal from './EditModel';
+import { AuthContext } from '../firebase/Provider/AuthProviders';
  
 
 const AdminPanel = () => {
+    const {user} = useContext(AuthContext);
     const [items, setItems] = useState([]);
     const [selectedItem, setSelectedItem] = useState(null);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [pageLoading, setPageLoading] = useState(true);
-    // New state to track which item's description/purpose is expanded
     const [expandedItemIds, setExpandedItemIds] = useState({}); 
     const GOOGLE_API_KEY ="https://script.google.com/macros/s/AKfycbz16FzJyOiy62I1CErXWVnnKf0wqjwsiBMjupVcK6kss_kMY4Aoyqjw_kpMHUaiFy4/exec";
     const navigate = useNavigate();
@@ -40,7 +41,7 @@ const AdminPanel = () => {
     const handleDelete = async (id, itemName) => {
         if (window.confirm(`Are you sure you want to permanently delete "${itemName}"? This action cannot be undone.`)) {
             try {
-                await axiosPublic.delete(`/api/equipment/${id}`);
+                await axiosPublic.delete(`/api/equipment/${id}?userEmail=${user.email}`);
 
                 const sheetsData = {
                     action: 'delete',
@@ -97,7 +98,7 @@ const AdminPanel = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-r from-teal-500 to-green-600 px-10 py-24 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-gradient-to-r from-teal-500 to-green-600 px-10 py-10 sm:px-6 lg:px-8">
             {/* Header and Navigation */}
             <div className="flex items-center justify-between  mb-8">
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-800">
@@ -150,7 +151,7 @@ const AdminPanel = () => {
                                         >
                                             <td className="px-6 py-4">
                                                 <img
-                                                    src={`http://localhost:5000/uploads/${item.image}`}
+                                                    src={`https://my-varsity-projects-server.onrender.com/uploads/${item.image}`}
                                                     alt={item.name}
                                                     className="w-20 h-20 rounded-lg object-cover shadow-md"
                                                 />

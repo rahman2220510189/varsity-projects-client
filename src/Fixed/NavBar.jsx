@@ -28,9 +28,11 @@ const NavBar = () => {
             <NavLink to="/my-history" className="font-medium text-white hover:text-yellow-400">
                 My History
             </NavLink>
+            
+           
     </>
   );
-  const adminAccessLink = user && isAdmin ? (
+   const adminAccessLink = user && isAdmin ? (
     <NavLink 
     to="/admin-dashboard-access" 
     className="font-medium px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-700 transition duration-300"
@@ -48,7 +50,7 @@ const NavBar = () => {
   const finalLinks = (
     <>
     {commonLinks}
-    {adminAccessLink}
+    {adminAccessLink} 
     </>
   );
  

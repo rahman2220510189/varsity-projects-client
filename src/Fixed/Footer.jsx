@@ -26,9 +26,8 @@ const Footer = () => {
 
         {/* CONTACT */}
         <div>
-          <h3 className="font-semibold text-white mb-3 text-base">Connect</h3>
+          <h3 className="font-semibold text-white mb-3 text-base">Contact</h3>
           <p>Email: <a href="mailto:embeddedlab@diu.edu.bd" className="hover:text-yellow-400">embeddedlab@diu.edu.bd</a></p>
-          <p className="mt-1">Phone: +880 1XXXXXXXXX</p>
 
           <div className="flex gap-4 mt-3 text-xl">
             <a href="#" className="hover:text-yellow-400"><i className="fab fa-facebook-f"></i></a>

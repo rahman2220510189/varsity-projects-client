@@ -146,7 +146,7 @@ const MyHistory = () => {
               <div className="h-48 overflow-hidden bg-white/20">
                 {record.itemImage ? (
                   <img
-                    src={`http://localhost:5000/uploads/${record.itemImage}`}
+                    src={`https://my-varsity-projects-server.onrender.com/uploads/${record.itemImage}`}
                     alt={record.itemName}
                     className="w-full h-full object-cover"
                   />
